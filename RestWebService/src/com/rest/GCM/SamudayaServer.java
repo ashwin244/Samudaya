@@ -28,7 +28,10 @@ import javax.ws.rs.core.Request;
 import com.google.android.gcm.server.Message;
 import com.google.android.gcm.server.Sender;
  
- 
+/**
+ * 
+ *
+ */
 @Path("/person")
 public class SamudayaServer { 
  
