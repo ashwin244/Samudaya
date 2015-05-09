@@ -29,7 +29,7 @@ import com.google.android.gcm.server.Message;
 import com.google.android.gcm.server.Sender;
  
 /**
- * 
+ * @author
  *
  */
 @Path("/person")
