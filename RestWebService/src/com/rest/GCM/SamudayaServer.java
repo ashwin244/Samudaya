@@ -124,10 +124,10 @@ public class SamudayaServer {
     @Path("interest")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public String postInterest(MultivaluedMap<String, String> interestParams){
+    public String postInterest(MultivaluedMap<String, String> interestParams, List<Integer> interestList){
     	String communityId = interestParams.getFirst(COMMUNITY_ID);
         String userName = interestParams.getFirst(USER_NAME);
-        List<Integer> interestId = interestParams.getFirst(INTEREST_IDS);
+        List<Integer> interestId = interestList.getFirst(INTEREST_IDS);
         
         try {
 			stmt = conn.createStatement();
@@ -154,7 +154,7 @@ public class SamudayaServer {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     public String postMessage(MultivaluedMap<String, String> messageParams){
-    	int interestId = messageParams.getFirst(INTEREST_ID);
+    	String interestId = messageParams.getFirst(INTEREST_ID);
         String userName = messageParams.getFirst(USER_NAME);
         String communityId = messageParams.getFirst(COMMUNITY_ID);
         String message = messageParams.getFirst(MESSAGE);
@@ -168,7 +168,7 @@ public class SamudayaServer {
         PreparedStatement preparedStmt = conn.prepareStatement(query);
         preparedStmt.setString (1, communityId);
         preparedStmt.setString (2, userName);
-        preparedStmt.setInt(3, interestId);
+        preparedStmt.setInt(3, Integer.parseInt(interestId));
         ResultSet rs = preparedStmt.executeQuery(query );
         
         while (rs.next()) {
